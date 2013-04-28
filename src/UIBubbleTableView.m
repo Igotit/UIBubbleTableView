@@ -192,37 +192,37 @@
     // Now typing
 	if (indexPath.section >= [self.bubbleSection count])
     {
-        static NSString *cellId = @"tblBubbleTypingCell";
-        UIBubbleTypingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        static NSString *typingCellId = @"tblBubbleTypingCell";
+        UIBubbleTypingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:typingCellId];
         
-        if (cell == nil) cell = [[UIBubbleTypingTableViewCell alloc] init];
-
+        if (cell == nil) cell = [[UIBubbleTypingTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:typingCellId];
+        
         cell.type = self.typingBubble;
         cell.showAvatar = self.showAvatars;
         
         return cell;
     }
-
+    
     // Header with date and time
     if (indexPath.row == 0)
     {
-        static NSString *cellId = @"tblBubbleHeaderCell";
-        UIBubbleHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        static NSString *headerCellId = @"tblBubbleHeaderCell";
+        UIBubbleHeaderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:headerCellId];
         NSBubbleData *data = [[self.bubbleSection objectAtIndex:indexPath.section] objectAtIndex:0];
         
-        if (cell == nil) cell = [[UIBubbleHeaderTableViewCell alloc] init];
-
+        if (cell == nil) cell = [[UIBubbleHeaderTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:headerCellId];
+        
         cell.date = data.date;
-       
+        
         return cell;
     }
     
-    // Standard bubble    
+    // Standard bubble
     static NSString *cellId = @"tblBubbleCell";
     UIBubbleTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     NSBubbleData *data = [[self.bubbleSection objectAtIndex:indexPath.section] objectAtIndex:indexPath.row - 1];
     
-    if (cell == nil) cell = [[UIBubbleTableViewCell alloc] init];
+    if (cell == nil) cell = [[UIBubbleTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     
     cell.data = data;
     cell.showAvatar = self.showAvatars;
